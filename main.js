@@ -1,6 +1,5 @@
 //Importing all Componenets and functions
 import { FetchFunction, LoadJobListings } from './JobListingsScrape.js';
-import * as cheerio from 'cheerio';
 
 //Enter your URL here
 let url = "https://www.linkedin.com/jobs/search/?currentJobId=3835742587&geoId=103644278&keywords=software%20engineer&location=United%20States&origin=JOB_SEARCH_PAGE_SEARCH_BUTTON&refresh=true"
@@ -13,7 +12,7 @@ let url = "https://www.linkedin.com/jobs/search/?currentJobId=3835742587&geoId=1
  */
 
 //Gathering all Jobs within a Job Keyword
-ListOfJobPostings(url);
+const jobPostingArray = ListOfJobPostings(url);
 
 function ListOfJobPostings(url) {
     FetchFunction(url)

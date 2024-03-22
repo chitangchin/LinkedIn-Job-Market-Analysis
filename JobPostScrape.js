@@ -1,11 +1,15 @@
 //Lets check whats in a job post
 import { FetchFunction, FilterCheerioData } from "./JobListingsScrape.js";
+import * as cheerio from 'cheerio'
 
-let url = "https://www.linkedin.com/jobs/view/software-engineer-intern-at-varian-3864746438/?position=48&pageNum=0&refId=Up8Gh3MXO%2BQnL%2Fohz%2FTfsw%3D%3D&trackingId=n9VIizPWAHSlFd8gDRYhwg%3D%3D&trk=public_jobs_jserp-result_sear";
+let url = "https://www.linkedin.com/jobs/view/software-engineer-i-fandango-at-fandango-3864384876/?refId=5pJ6UxvJfilpQ6SVxOaCjg%3D%3D&trackingId=XBK4o39wSGOG57ZckN";
 
-let test = FetchFunction(url);
-
-test.then((data) => {console.log(data)});
+const response = FetchFunction(url)
+.then(res => {
+    const $ = cheerio.load(res);
+    const test = $('span li')
+    console.log(test.text());
+});
 
 //Filters
 /*h1 class="t-24 t-bold job-details-jobs-unified-top-card__job-title" This is the title of job

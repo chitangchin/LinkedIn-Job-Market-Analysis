@@ -22,7 +22,7 @@ export function LoadJobListings(data) {
 export function FilterCheerioDataForLinks(data, parameters) {
     const resultArr = [];
     const dataSelected = data(parameters);
-    const test = dataSelected.each((index, value) => {
+    const filter = dataSelected.each((index, value) => {
         let val = data(value).attr("href");
         resultArr.push(val);
     })
@@ -30,11 +30,10 @@ export function FilterCheerioDataForLinks(data, parameters) {
 }
 
 export function FilterCheerioData(data, parameters) {
-    const resultArr = [];
+    if (typeof data !== 'function'){
+        data = cheerio.load(data);
+    }
+    
     const dataSelected = data(parameters);
-    const test = dataSelected.each((index, value) => {
-        console.log(index.text());
-
-    })
-    return true; 
+    return dataSelected; 
 }
